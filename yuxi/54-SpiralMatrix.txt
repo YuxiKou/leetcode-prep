@@ -1,0 +1,57 @@
+/*
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+Example 1:
+
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+
+Example 2:
+
+Input: matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+
+
+Constraints:
+
+    m == matrix.length
+    n == matrix[i].length
+    1 <= m, n <= 10
+    -100 <= matrix[i][j] <= 100
+*/
+/*
+TAGS: Boundary_Check, Redo
+*/
+public class Solution {
+    public IList<int> SpiralOrder(int[][] matrix) {
+        var directions = new List<(int, int)>()
+        {
+            (0, 1),
+            (1, 0),
+            (0, -1),
+            (-1, 0),
+        };
+
+        var directionsIndex = 0;
+        var steps = new int[] { matrix[0].Length, matrix.Length - 1 };
+
+        var result = new List<int>();
+        var currentRow = 0;
+        var currentColumn = -1;
+
+        while(steps[directionsIndex % 2] > 0)
+        {
+            for(int i = 0; i < steps[directionsIndex % 2]; ++i)
+            {
+                currentRow += directions[directionsIndex].Item1;
+                currentColumn += directions[directionsIndex].Item2;
+                result.Add(matrix[currentRow][currentColumn]);
+            }
+            --steps[directionsIndex % 2];
+            directionsIndex = (directionsIndex + 1) % 4;
+        }
+
+        return result;
+    }
+}
