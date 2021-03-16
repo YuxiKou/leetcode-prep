@@ -1,0 +1,82 @@
+/*
+Given an array of non-negative integers nums, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Your goal is to reach the last index in the minimum number of jumps.
+
+You can assume that you can always reach the last index.
+
+
+
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+Example 2:
+
+Input: nums = [2,3,0,1,4]
+Output: 2
+
+
+
+Constraints:
+
+    1 <= nums.length <= 1000
+    0 <= nums[i] <= 105
+
+
+*/
+
+
+public class Solution {
+    public int Jump2(int[] nums) {
+        // O(n^2)
+        var dp = new int[nums.Length];
+        for(int i = 1; i < nums.Length; ++i)
+        {
+            dp[i] = int.MaxValue;
+        }
+
+        for(int i = 0; i < nums.Length; ++i)
+        {
+            for(int j = 1; j <= nums[i] && i + j < nums.Length; ++j)
+            {
+                dp[i+j] = Math.Min(dp[i+j], dp[i] + 1);
+            }
+        }
+
+        return dp[nums.Length - 1];
+    }
+    public int Jump(int[] nums) {
+        // O(n), BFS
+        if(nums.Length < 2)
+        {
+            return 0;
+        }
+
+        var currentLevelMax = 0;
+        var nextLevelMax = 0;
+        var i = 0;
+        var result = 0;
+        while(currentLevelMax >= i)
+        {
+            ++result;
+            while(i <= currentLevelMax)
+            {
+                nextLevelMax = Math.Max(nextLevelMax, nums[i] + i);
+                if(nextLevelMax >= nums.Length - 1)
+                {
+                    return result;
+                }
+
+                ++i;
+            }
+            currentLevelMax = nextLevelMax;
+        }
+
+        return 0;
+    }
+}
