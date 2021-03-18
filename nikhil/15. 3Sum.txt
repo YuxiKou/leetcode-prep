@@ -27,37 +27,6 @@ Constraints:
 Accepted
 
 */
-
-
-public class Solution {
-    public IList<IList<int>> ThreeSumWithDups(int[] nums) {
-            var threeSum = new List<IList<int>>();
-
-            if (nums.Length >= 3)
-            {
-                Array.Sort(nums);
-                for (int x = 1; x < nums.Length - 1; x++)
-                {
-                    
-                    HashSet<int> leftValues = new HashSet<int>();
-                    for (int left = 0; left < x; left++)
-                    {
-                        leftValues.Add(nums[left]);
-                    }
-
-                    for (int right = x + 1; right < nums.Length; right++)
-                    {
-                        int smallestValue = -1 * (nums[x] + nums[right]);
-                        if (leftValues.Contains(smallestValue))
-                        {
-                            threeSum.Add(new List<int>() { smallestValue, nums[x], nums[right] });
-                        }
-                    }
-                }
-            }
-
-            return threeSum;
-    }
     
         public IList<IList<int>> ThreeSum(int[] nums)
         {
