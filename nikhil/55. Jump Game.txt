@@ -1,0 +1,25 @@
+public class Solution {
+    public bool CanJump(int[] nums) {
+        int currentMaxIndex=0;
+        
+        for(int x=0;x<nums.Length-1;x++)
+        {
+        
+            if(nums[x]==0 && x>= currentMaxIndex)
+            {
+                return false;
+            }
+            
+            if(nums[x]!=0)
+            {
+                if(nums[x]+x>currentMaxIndex)
+                {
+                    currentMaxIndex=nums[x]+x;
+                }                
+            }            
+        }
+        
+        return true;
+        
+    }
+}

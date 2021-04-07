@@ -1,0 +1,21 @@
+public class Solution {
+    public int[] PlusOne(int[] digits) {
+        for(int x=digits.Length-1;x>=0;x--)
+        {
+            if(digits[x]==9)
+            {
+                digits[x]=0;
+            }
+            else
+            {
+                digits[x]++;
+                return digits;
+            }            
+        }
+        
+        //this means all digits were 9
+            int[] result = new int[digits.Length+1];
+            result[0] = 1;
+            return result;
+    }
+}

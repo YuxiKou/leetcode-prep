@@ -1,0 +1,25 @@
+//Trick start from the end
+
+
+public class Solution {
+    public void Merge(int[] nums1, int m, int[] nums2, int n) {
+       int nums1Index=m-1;
+       int nums2Index=n-1;
+       for(int x=m+n-1;x>=0;x--)
+       {
+           if(nums2Index<0)
+           {               
+               break;
+           }
+           
+           if(nums1Index>=0 && nums1[nums1Index]>=nums2[nums2Index])
+           {
+               nums1[x]=nums1[nums1Index--];
+           }
+           else
+           {             
+               nums1[x]=nums2[nums2Index--];
+           }
+       }
+    }
+}
