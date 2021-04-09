@@ -1,0 +1,90 @@
+public class Solution {
+                public void SetZeroes(int[][] matrix)
+        {
+            int xl = matrix.Length;
+            int yl = matrix[0].Length;
+
+            bool tx = false;
+            bool ty = false;
+
+            for (int x = 0; x < xl; x++)
+            {
+                if (matrix[x][0] == 0)
+                {
+                    tx = true;
+                    break;
+                }
+            }
+
+            for (int y = 0; y < yl; y++)
+            {
+                if (matrix[0][y] == 0)
+                {
+                    ty = true;
+                    break;
+                }
+            }
+
+            for (int x = 1; x < xl; x++)
+            {
+                for (int y = 1; y < yl; y++)
+                {
+                    if (matrix[x][y] == 0)
+                    {
+                        matrix[x][0] = 0;
+                        matrix[0][y] = 0;
+                    }
+                }
+            }
+
+            for (int x = 1; x < xl; x++)
+            {
+                if (matrix[x][0] == 0)
+                {
+                    for (int y = 1; y < yl; y++)
+                    {
+                        matrix[x][y] = 0;
+                    }
+                }
+            }
+
+            for (int y = 1; y < yl; y++)
+            {
+                if (matrix[0][y] == 0)
+                {
+                    for (int x = 1; x < xl; x++)
+                    {
+                        matrix[x][y] = 0;
+                    }
+                }
+            }
+
+            if (matrix[0][0] == 0)
+            {
+                for (int x = 0; x < xl; x++)
+                {
+                    matrix[x][0] = 0;
+                }
+                for (int y = 0; y < yl; y++)
+                {
+                    matrix[0][y] = 0;
+                }
+            }
+
+            if (tx)
+            {
+                for (int x = 0; x < xl; x++)
+                {
+                    matrix[x][0] = 0;
+                }
+            }
+
+            if (ty)
+            {
+                for (int y = 0; y < yl; y++)
+                {
+                    matrix[0][y] = 0;
+                }
+            }
+        }
+}
